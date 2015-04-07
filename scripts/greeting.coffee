@@ -1,5 +1,7 @@
 module.exports = (robot) ->
   robot.hear /おはよう/i, (msg) ->
+  	d = new Date
+  	hour = d.getHours()
   	if hour < 12
   		# 午前中
     	msg.send "おはよう！早起きは三文の得！"
@@ -11,6 +13,4 @@ module.exports = (robot) ->
   robot.adapter.on 'connected', () ->
     robot.send room: 'hubot-dev', "再起動中… あとでスクリプト読み込んでね"
 
-  d = new Date
-  hour = d.getHours()
   
