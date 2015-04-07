@@ -8,9 +8,9 @@ module.exports = function(robot) {
     second = d.getSeconds();
     str = hour + "時 " + minute + "分 " + second + "秒！";
     if (hour < 12) {
-      return msg.send("おはよう！早起きは三文の得！");
+      return msg.send(str + "\nおはよう！早起きは三文の得！");
     } else if (hour >= 12) {
-      return msg.send("おそよう！今日も一日頑張るぞい！");
+      return msg.send(str + "\nおそよう！今日も一日頑張るぞい！");
     }
   });
   return robot.adapter.on('connected', function() {
