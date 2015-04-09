@@ -1,3 +1,4 @@
+
 # Description:
 #   the most useless hubot script
 #
@@ -20,8 +21,18 @@ module.exports = (robot) ->
 
   if token?
     yo = new Yo token
-    robot.hear /yo (.*)/i, (msg) ->
+    robot.hear /yoall?$/, (msg) ->
+      yo.yoall handler msg, ->
+        msg.send "sent Yo to all subscribers"
+
+    robot.hear /yo ((?!(name|subscribers|subs)$).+)$/, (msg) ->
       username = msg.match[1].toUpperCase()
       yo.yo username, handler msg, ->
-        return msg.send "sent Yo to #{username}"
+        msg.send "sent Yo to #{username}"
 
+  room = '#hubot-dev'
+
+  if room?
+    robot.router.get "/yo", (req, res) ->
+      robot.messageRoom room, "received Yo from #{req.query.username}"
+      res.end()
