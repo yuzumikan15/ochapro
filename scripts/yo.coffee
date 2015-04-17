@@ -30,7 +30,8 @@ module.exports = (robot) ->
       yo.yo username, handler msg, ->
         msg.send "sent Yo to #{username}"
 
-  room = '#hubot-dev'
+  # room = '#hubot-dev'
+  room = process.env.HUBOT_YO_ROOM
 
   if room?
     robot.router.get "/yo", (req, res) ->
